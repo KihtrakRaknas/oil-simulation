@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        body{
+            background-color:#2e2e2e;
+            color:white;
+        }
+        .modal{
+            color:black!important;
+        }
+      .table-div{
+        overflow-x: hidden;
+        overflow-y: scroll;
+          height:70vh;
+          
+      }
+      table{
+        width:100%;
+          border-radius: 20px;
+      }
+      table, tr, td{
+        margin:auto 0; 
+        text-align:center;
+      }
+      
+        .withdrew{
+            background-color:aquamarine;
+            color:black;
+        }
+        
+        .winner{
+            background-color:lawngreen;
+            color:black;
+        }
+        
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {display:none;}
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    </style>
+    <title>Monies</title>
+  </head>
+  <body>
+    
+    
+  <div class="modal fade" id="setUpModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Set Up</h4>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body text-center">
+          <form onsubmit="return false;">
+            <input type="text" id="nameId" class="form-control" placeholder="Enter Name Here">
+            
+            <div class="alert alert-danger alert-dismissible" id="incorrectName" style="display:none;">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Invalid Name</strong> Please enter a better one!
+            </div>
+            
+              <h1>Salery will be randomly assigned</h1>
+            <br>
+              <h6 style="float:left; display:inline;">Time<h6> <h6 style="float:right;display:inline;">Money Market<h6>
+            <label class="switch">
+              <input type="checkbox" id="interest" onclick="is();">
+              <span class="slider"></span> 
+            </label>
+              <p class="display-4" id="interestStyle">Time Deposit</p>
+          </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="start();">START</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
+    
+            <h1 class="text-center">Simulation!</h1><button style = "position:absolute; top:0px;right:0;" type="button" class="btn btn-primary" onclick="openInput();"><span id="withdraw">Withdraw</span><input type="text" placeholder="ENTER AMOUNT" onKeyDown="if(event.keyCode==13) pushToLeaderboard();" id="withdrawInput" style="display:none;"></button>
+    <h2 style="float:left">Balance: $<span id= "balanceOutput">0</span></h2>
+    <h2 style="float:right">Salary: $<span id= "salaryOutput">0</span></h2>
+    <h2 style="text-align:center">Interest: <span id= "interestOutput"></span>%</h2>
+    <br>
+      <br>
+    <div class="container table-div">
+      <table class="table table-dark">
+
+        <tbody id="tbody">
+          
+        </tbody>
+      </table>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
